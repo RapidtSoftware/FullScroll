@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="fullscroll.prefixfree.min.css"/>
+		<link rel="stylesheet" href="style.css"/>
+		<script src="prefix.min.js"></script>
+		<link rel="stylesheet" href="prism.css"/>
+
+		<title>FullScroll - A vanilla JavaScript, full page slideshow library with smooth scrolling and arrow button control.</title>
+	</head>
+	<body>
+		<div id='page1' class='fullscroll page dark'>
+			<div class='page-inner'>
+				<h1>FullScroll</h1>
+				<span>is a vanilla JavaScript, full page slideshow library with smooth scrolling and arrow button control.</span>
+				<br/>
+				<a href="https://github.com/RapidtSoftware/FullScroll/archive/master.zip" class='button' title="Download FullScroll">Download</a><a href="https://github.com/RapidtSoftware/FullScroll/" title="View FullScroll on Github">or see me on Github.</a>
+			</div>
+		</div>
+		<div id='page2' class='fullscroll page white'>
+			<div class='page-inner'>
+				<h1>Browser Support</h1>
+				<span>Here is a browser compatibility table with the minimum browser versions that supports FullScroll.</span>
+				<br/>
+				<table id="compatibility">
+					<thead>
+						<tr>
+							<th><img src="chrome.png"/> Chrome</th>
+							<th><img src="firefox.png"/> Firefox</th>
+							<th><img src="ie.png"/> Internet Explorer</th>
+							<th><img src="iedge.png"/> Microsoft Edge</th>
+							<th><img src="safari.png"/> Safari</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>6</td>
+							<td>10</td>
+							<td>10<sup>[1]</sup></td>
+							<td>(Yes)</td>
+							<td>7</td>
+						</tr>
+					</tbody>
+				</table>
+				<span class='note'>[1] <a href="https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support">See this</a> for the reason that Internet Explorer 9 and older isn't supported.</span>
+			</div>
+		</div>
+		<div id='page3' class='fullscroll page dark'>
+			<div class='page-inner'>
+				<h1>Usage</h1>
+				<span>Simply include the correct files, write the pages' HTML and invoke the fullscroll JavaScript function.</span>
+				<br/>
+				<pre><code class="language-html">&lt;div&nbsp;class='fullscroll'&gt;
+	&lt;h1&gt;Hello&lt;/h1&gt;
+	&lt;span&gt;This is page 1&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&nbsp;class='fullscroll'&gt;
+	&lt;h1&gt;Page 2&lt;/h1&gt;
+	&lt;span&gt;This is page 2. Lorem impsum samet.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&nbsp;src='path/to/fullscroll.min.js'&gt;&lt;/script&gt;
+&lt;link&nbsp;rel='stylesheet'&nbsp;src='path/to/fullscroll.min.css'/&gt;
+
+&lt;script&gt;
+	new FullScroll();
+&lt;/script&gt;</code></pre>
+			</div>
+		</div>
+		<div id='page4' class='fullscroll page'>
+			<div class='page-inner'>
+				<h1>Features and Options</h1>
+				<span>A list of currently available options and features. Note that more options will be added soon.</span>
+				<br/>
+				<ul>
+					<li>To use a specific document title for each page, just add a <code class='language-html' style="white-space:nowrap">data-fullscroll-title</code> attribute to your fullscroll page element and insert the title you want as the attribute's value.</li>
+					<li>You can change the selector of FullScroll pages by adding an option called <code class='language-html'>selector</code> to the FullScroll invocation function. For example: <pre><code class='language-javascript'>new FullScroll({ selector: '#container > .my-page-element-selector' });</code></pre></li>
+					<li>To do something each time that the page is changed, just add an options called <code class='language-html'>selector</code>. For example: <pre><code class='language-javascript'>new FullScroll({ onChange: function(){ /* Do stuff here */ } });</code></pre></li>
+					<li>To prevent spam pressing of arrow buttons, FullScroll adds each page to show to a queue and shows the next element in the queue when the current page's animation is finished.</li>
+				</ul>
+			</div>
+		</div>
+		<div id='page5' class='fullscroll page dark'>
+			<div class='page-inner'>
+				<h1>Methods</h1>
+				<span>A list of currently available methods. Note that more methods will be added soon.</span>
+				<br/>
+				<ul>
+					<li><code class='language-javascript'>.goto( index )</code> - Go to the page with the specfied index. For example: <pre><code class='language-javascript'>new FullScroll().goto( 0 );</code></pre></li>
+					<li><code class='language-javascript'>.next()</code> - Go to the next page. For example: <pre><code class='language-javascript'>new FullScroll().next();</code></pre></li>
+					<li><code class='language-javascript'>.previous()</code> or <code class='language-javascript'>.prev()</code> - Go to the previous page. For example: <pre><code class='language-javascript'>new FullScroll().previous();</code></pre></li>
+					<li><code class='language-javascript'>.current</code> - Get the current page index. For example: <pre><code class='language-javascript'>console.log( new FullScroll().current );</code></pre></li>
+				</ul>
+			</div>
+		</div>
+		<div id='page6' class='fullscroll page'>
+			<div class='page-inner'>
+				<h1>Events</h1>
+				<span>A list of currently available events. Note that more events will be added soon.</span>
+				<br/>
+				<ul>
+					<li><code class='language-javascript'>onChange( element, direction | index )</code> - Fired each time that the page is changed. For example: <pre><code class='language-javascript'>new FullScroll({ onChange: function(){ console.log( this.current ) } });</code></pre></li>
+				</ul>
+			</div>
+		</div>
+		<div id='page-num'>1 / 5</div>
+		<div id='page-next'>Use your up and down arrow keys to navigate.</div>
+
+		<script src="prism.js"></script>
+		<script src="fullscroll.min.js"></script>
+		<script>
+			var times = 0;
+			new FullScroll({
+				onChange: function(dir){
+					if(times++ == 1)
+						document.getElementById("page-next").classList.add("slide-out");
+					var pagenum = document.getElementById("page-num");
+					pagenum.innerHTML = this.current + 1 + " / " + document.querySelectorAll('.page').length;
+				}
+			});
+		</script>
+	</body>
+</html>
